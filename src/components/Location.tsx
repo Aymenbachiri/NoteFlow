@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { H2 } from "./common/H2";
 

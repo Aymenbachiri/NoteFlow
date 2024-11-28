@@ -1,11 +1,11 @@
 import "../../global.css";
 import { Stack } from "expo-router";
-import { ThemeProvider } from "../lib/providers/ThemeProvider";
 import ThemeSwitcher from "../components/ThemeSwitcher";
+import Providers from "../lib/providers/Providers";
 
 export default function RootLayout() {
   return (
-    <ThemeProvider>
+    <Providers>
       <Stack>
         <Stack.Screen
           name="index"
@@ -15,6 +15,6 @@ export default function RootLayout() {
           }}
         />
       </Stack>
-    </ThemeProvider>
+    </Providers>
   );
 }
