@@ -32,6 +32,12 @@ export default function RootLayout() {
             headerTitle: "Post",
           }}
         />
+        <Stack.Screen
+          name="my-posts"
+          options={{
+            headerTitle: "My Posts",
+          }}
+        />
       </Stack>
     </Providers>
   );
