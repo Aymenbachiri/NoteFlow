@@ -1,7 +1,7 @@
 import "../../global.css";
 import { Stack } from "expo-router";
-import ThemeSwitcher from "../components/ThemeSwitcher";
 import Providers from "../lib/providers/Providers";
+import HeaderRight from "../components/HeaderRight";
 
 export default function RootLayout() {
   return (
@@ -11,7 +11,19 @@ export default function RootLayout() {
           name="index"
           options={{
             headerTitle: "Home",
-            headerRight: () => <ThemeSwitcher />,
+            headerRight: () => <HeaderRight />,
+          }}
+        />
+        <Stack.Screen
+          name="profile"
+          options={{
+            headerTitle: "Profile",
+          }}
+        />
+        <Stack.Screen
+          name="(auth)/signup"
+          options={{
+            headerTitle: "Sign Up",
           }}
         />
       </Stack>

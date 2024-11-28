@@ -1,7 +1,10 @@
 import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Alert } from "react-native";
+import { SignUpFormValues, signUpSchema } from "../schema/signUpSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function useSignUpUser() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -10,6 +13,15 @@ export function useSignUpUser() {
   const [password, setPassword] = useState("");
   const [pendingVerification, setPendingVerification] = useState(false);
   const [code, setCode] = useState("");
+
+  const formatError = (error: any) => {
+    if (error?.errors) {
+      return error.errors
+        .map((err: any) => err.message || "An unknown error occurred.")
+        .join("\n");
+    }
+    return error?.message || "An unexpected error occurred. Please try again.";
+  };
 
   const onSignUpPress = async () => {
     if (!isLoaded) {
@@ -25,10 +37,13 @@ export function useSignUpUser() {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
       setPendingVerification(true);
-      Alert.alert("Signup Successful, pleas check your email");
+      Alert.alert(
+        "Signup Successful",
+        "Please check your email for the verification code."
+      );
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
-      Alert.alert(JSON.stringify(err, null, 2));
+      Alert.alert("Signup Failed", formatError(err));
     }
   };
 
@@ -44,15 +59,45 @@ export function useSignUpUser() {
 
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
-        Alert.alert("Signup Successful");
+        Alert.alert("Verification Successful", "You are now signed up.");
         router.replace("/");
       } else {
         console.error(JSON.stringify(completeSignUp, null, 2));
-        Alert.alert(JSON.stringify(completeSignUp, null, 2));
+        Alert.alert(
+          "Verification Incomplete",
+          "Please check the verification code and try again."
+        );
       }
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
-      Alert.alert(JSON.stringify(err, null, 2));
+      Alert.alert("Verification Failed", formatError(err));
+    }
+  };
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<SignUpFormValues>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      emailAddress: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = async (data: SignUpFormValues) => {
+    try {
+      setEmailAddress(data.emailAddress);
+      setPassword(data.password);
+
+      await onSignUpPress();
+    } catch (error) {
+      setError("root", {
+        type: "manual",
+        message: error instanceof Error ? error.message : "Signup failed",
+      });
     }
   };
 
@@ -66,5 +111,8 @@ export function useSignUpUser() {
     setCode,
     onSignUpPress,
     onPressVerify,
+    control,
+    errors,
+    handleSubmit: handleSubmit(onSubmit),
   };
 }
