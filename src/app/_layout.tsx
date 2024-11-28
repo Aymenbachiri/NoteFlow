@@ -1,6 +1,7 @@
-import { Stack } from "expo-router";
 import "../../global.css";
+import { Stack } from "expo-router";
 import { ThemeProvider } from "../lib/providers/ThemeProvider";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 
 export default function RootLayout() {
   return (
@@ -9,7 +10,8 @@ export default function RootLayout() {
         <Stack.Screen
           name="index"
           options={{
-            headerTitle: "Index",
+            headerTitle: "Home",
+            headerRight: () => <ThemeSwitcher />,
           }}
         />
       </Stack>
