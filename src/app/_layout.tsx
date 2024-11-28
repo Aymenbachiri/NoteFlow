@@ -26,6 +26,12 @@ export default function RootLayout() {
             headerTitle: "Sign Up",
           }}
         />
+        <Stack.Screen
+          name="posts/[id]"
+          options={{
+            headerTitle: "Post",
+          }}
+        />
       </Stack>
     </Providers>
   );
