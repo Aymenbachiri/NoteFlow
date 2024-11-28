@@ -1,8 +1,6 @@
 import { Stack } from "expo-router";
 import "../../global.css";
-import { StatusBar, TouchableOpacity, View } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { ThemeProvider, useTheme } from "../lib/providers/ThemeProvider";
+import { ThemeProvider } from "../lib/providers/ThemeProvider";
 
 export default function RootLayout() {
   return (
