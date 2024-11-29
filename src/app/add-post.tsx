@@ -19,7 +19,7 @@ export default function AddPost() {
           community of readers.
         </MyText>
         <View className="flex flex-col gap-3 mt-8 dark:bg-black">
-          <H2>Title</H2>
+          <H2 className="mx-2">Title</H2>
           <Controller
             control={control}
             name="title"
@@ -39,44 +39,50 @@ export default function AddPost() {
             )}
           />
           {errors.title && (
-            <H2 className="text-red-500 text-sm">{errors.title.message}</H2>
+            <H2 className="text-red-500 text-sm mx-2">
+              {errors.title.message}
+            </H2>
           )}
         </View>
         <View className="flex flex-col gap-3 mt-8 dark:bg-black">
-          <H2>Content</H2>
+          <H2 className="mx-2">Content</H2>
           <Controller
             control={control}
             name="description"
             render={({ field: { onChange, value, onBlur } }) => (
               <TextInput
                 placeholder="Content"
-                className=" dark:bg-white rounded-md border mx-1"
+                className="dark:bg-white rounded-md border mx-1"
                 autoCapitalize="none"
                 value={value}
                 onChangeText={onChange}
                 onBlur={onBlur}
+                multiline={true}
+                numberOfLines={4}
                 style={{
                   borderColor: errors.description ? "red" : "black",
                   borderWidth: 1,
+                  textAlignVertical: "top",
+                  padding: 10,
                 }}
               />
             )}
           />
           {errors.description && (
-            <H2 className="text-red-500 text-sm">
+            <H2 className="text-red-500 text-sm mx-2">
               {errors.description.message}
             </H2>
           )}
         </View>
         <View className="flex flex-col gap-3 mt-8 dark:bg-black">
-          <H2>Image Url</H2>
+          <H2 className="mx-2">Image Url</H2>
           <Controller
             control={control}
             name="imageUrl"
             render={({ field: { onChange, value, onBlur } }) => (
               <TextInput
                 placeholder="Image URL"
-                className=" dark:bg-white rounded-md border mx-1"
+                className=" dark:bg-white rounded-md border mx-1 h-14"
                 autoCapitalize="none"
                 value={value}
                 onChangeText={onChange}
@@ -89,11 +95,13 @@ export default function AddPost() {
             )}
           />
           {errors.imageUrl && (
-            <H2 className="text-red-500 text-sm">{errors.imageUrl.message}</H2>
+            <H2 className="text-red-500 text-sm mx-2">
+              {errors.imageUrl.message}
+            </H2>
           )}
 
-          <TouchableOpacity onPress={handleSubmit}>
-            <H2>Add Post</H2>
+          <TouchableOpacity onPress={handleSubmit} className="mt-4">
+            <H2 className="text-center">Add Post</H2>
           </TouchableOpacity>
         </View>
       </View>

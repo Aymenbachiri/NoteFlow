@@ -37,10 +37,7 @@ export function useSignUpUser() {
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
       setPendingVerification(true);
-      Alert.alert(
-        "Signup Successful",
-        "Please check your email for the verification code."
-      );
+      Alert.alert("Signup Successful");
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
       Alert.alert("Signup Failed", formatError(err));

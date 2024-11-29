@@ -1,7 +1,9 @@
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 import { H2 } from "../components/common/H2";
 import { usePosts } from "../lib/hooks/usePosts";
 import { useUser } from "@clerk/clerk-expo";
+import PostItemSkeleton from "../components/PostItemSkeleton";
+import PostItem from "../components/PostItem";
 
 export default function MyPosts() {
   const { posts, loading, error } = usePosts();
@@ -29,8 +31,22 @@ export default function MyPosts() {
   if (loading) return <ActivityIndicator size="large" color="black" />;
 
   return (
-    <View>
-      <H2>My Posts</H2>
+    <View className="flex-1 dark:bg-black">
+      <H2 className="my-6">My Posts</H2>
+      {loading ? (
+        <FlatList
+          data={[...Array(5)]}
+          renderItem={() => <PostItemSkeleton />}
+          keyExtractor={(_, index) => index.toString()}
+        />
+      ) : (
+        <FlatList
+          data={userPosts}
+          renderItem={({ item }) => <PostItem post={item} />}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={{ paddingBottom: 16 }}
+        />
+      )}
     </View>
   );
 }

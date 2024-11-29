@@ -15,9 +15,15 @@ export function useAddPost() {
     handleSubmit,
     reset,
     control,
+    setError,
     formState: { errors },
   } = useForm<BlogPost>({
     resolver: zodResolver(PostSchema),
+    defaultValues: {
+      title: "",
+      description: "",
+      imageUrl: "",
+    },
   });
 
   const registerPost = async (data: BlogPost) => {
@@ -59,6 +65,10 @@ export function useAddPost() {
       Alert.alert("Error", error.message || "An unexpected error occurred", [
         { text: "OK" },
       ]);
+      setError("root", {
+        type: "manual",
+        message: error instanceof Error ? error.message : "Add Post failed",
+      });
       setLoading(false);
     }
   };
