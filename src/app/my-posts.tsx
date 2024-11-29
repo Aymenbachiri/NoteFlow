@@ -24,8 +24,8 @@ export default function MyPosts() {
 
   if (userPosts.length === 0) {
     return (
-      <View className="flex-1 flex items-center justify-center ">
-        <H2 className="dark:text-black">You have not created any posts yet.</H2>
+      <View className="flex-1 flex items-center justify-center dark:bg-black">
+        <H2 className="dark:text-white">You have not created any posts yet.</H2>
       </View>
     );
   }
