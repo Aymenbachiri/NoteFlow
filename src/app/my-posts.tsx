@@ -3,13 +3,14 @@ import { H2 } from "../components/common/H2";
 import { usePosts } from "../lib/hooks/usePosts";
 import { useUser } from "@clerk/clerk-expo";
 import PostItemSkeleton from "../components/PostItemSkeleton";
-import PostItem from "../components/PostItem";
 import { MyText } from "../components/common/MyText";
 import DashboardPostItem from "../components/DashboardPostItem";
+import { useTheme } from "../lib/providers/ThemeProvider";
 
 export default function MyPosts() {
   const { posts, loading, error } = usePosts();
   const { user } = useUser();
+  const { colorScheme } = useTheme();
   const userPosts = posts.filter(
     (post) => post.author === user?.emailAddresses[0].emailAddress
   );
@@ -22,6 +23,16 @@ export default function MyPosts() {
     );
   }
 
+  if (loading)
+    return (
+      <View className="flex-1 dark:bg-black">
+        <ActivityIndicator
+          size="large"
+          color={colorScheme === "dark" ? "white" : "black"}
+        />
+      </View>
+    );
+
   if (userPosts.length === 0) {
     return (
       <View className="flex-1 flex items-center justify-center dark:bg-black">
@@ -29,8 +40,6 @@ export default function MyPosts() {
       </View>
     );
   }
-
-  if (loading) return <ActivityIndicator size="large" color="black" />;
 
   return (
     <View className="flex-1 dark:bg-black">

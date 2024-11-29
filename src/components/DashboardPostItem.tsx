@@ -3,7 +3,7 @@ import { H2 } from "./common/H2";
 import { formatDate } from "../lib/utils/utils";
 import type { post } from "../lib/types/types";
 import { Feather, FontAwesome6 } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { Link, type RelativePathString } from "expo-router";
 import { useTheme } from "../lib/providers/ThemeProvider";
 import { useDeletePost } from "../lib/hooks/useDeletePost";
 
@@ -51,9 +51,9 @@ export default function DashboardPostItem({ post }: { post: post }) {
               color={colorScheme === "dark" ? "white" : "black"}
             />
           </Link>
-          <TouchableOpacity>
+          <Link href={`/edit-post/${post.id}` as RelativePathString}>
             <Feather name="edit" size={24} color="green" />
-          </TouchableOpacity>
+          </Link>
           <TouchableOpacity
             onPress={handleDelete}
             disabled={isDeleting}

@@ -1,13 +1,9 @@
 import { API_URL } from "@/src/components/common/Constants";
-import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert } from "react-native";
 
 export function useDeletePost({ id }: { id: string }) {
   const [isDeleting, setIsDeleting] = useState(false);
-  const router = useRouter();
-
-  if (!id) return null;
 
   const handleDelete = async () => {
     Alert.alert(

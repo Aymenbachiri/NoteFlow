@@ -50,6 +50,12 @@ export default function RootLayout() {
             headerTitle: "Add Post",
           }}
         />
+        <Stack.Screen
+          name="edit-post/[id]"
+          options={{
+            headerTitle: "Edit Post",
+          }}
+        />
       </Stack>
     </Providers>
   );
