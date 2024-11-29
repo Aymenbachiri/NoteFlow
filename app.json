@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.aymen99.NoteFlow"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "cf51ef4c-d067-4bbb-a1aa-c1c0c66d558c"
+      }
     }
   }
 }
