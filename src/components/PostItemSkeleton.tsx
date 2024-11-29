@@ -3,7 +3,7 @@ import { View } from "react-native";
 export default function PostItemSkeleton() {
   return (
     <View className="flex-1 animate-pulse">
-      <View className="overflow-hidden animate-pulse rounded bg-white dark:bg-gray-800 shadow-md transition-shadow duration-300">
+      <View className="overflow-hidden animate-pulse rounded bg-white dark:bg-gray-800 duration-300">
         {/* Skeleton for Image Section */}
         <View className="h-64 w-full rounded animate-pulse bg-gray-200 dark:bg-gray-700" />
 

@@ -12,7 +12,7 @@ export default function PostItem({ post }: { post: post }) {
     <Link
       href={`/posts/${post.id}` as RelativePathString}
       aria-label="Article"
-      className="rounded mt-2 bg-white dark:bg-gray-800 shadow-md transition-shadow duration-300"
+      className="rounded mt-2 bg-white dark:bg-gray-800 duration-300"
     >
       {/* Image Section */}
       <View className="flex-1">
@@ -41,7 +41,7 @@ export default function PostItem({ post }: { post: post }) {
             source={{
               uri: "https://cdn-icons-png.flaticon.com/512/149/149071.png",
             }}
-            className="h-10 w-10 rounded-full object-cover shadow-sm"
+            className="h-10 w-10 rounded-full object-cover"
             accessibilityLabel="Author avatar"
           />
           <View>

@@ -8,8 +8,8 @@ export default function ProtectedScreen({
 }) {
   const { isSignedIn } = useAuth();
 
-  if (isSignedIn) {
-    return <Redirect href={"/"} />;
+  if (!isSignedIn) {
+    return <Redirect href={"/(auth)/signin"} />;
   }
 
   return <>{children}</>;

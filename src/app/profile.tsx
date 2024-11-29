@@ -14,7 +14,9 @@ export default function Profile() {
 
   return (
     <View className="flex-1 flex gap-5 dark:bg-black">
-      <H2>Add Post</H2>
+      <Link href="/add-post">
+        <H2>Add Post</H2>
+      </Link>
       <Link href="/my-posts">
         <H2>My Posts</H2>
       </Link>
