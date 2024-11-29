@@ -76,26 +76,20 @@ export default function Features() {
           <View className="ml-1 h-1 w-1 rounded-full bg-blue-500" />
         </View>
 
-        <View className="mt-8 lg:flex-row xl:mt-12">
-          <FlatList
-            data={features}
-            keyExtractor={(item) => item.title}
-            numColumns={2}
-            columnWrapperStyle={{ gap: 16 }}
-            renderItem={({ item }) => (
-              <View className="space-y-3 flex-1 px-2 gap-2">
-                <View className="inline-block rounded-xl bg-blue-100 p-3 text-blue-500 dark:bg-blue-500 dark:text-white">
-                  <H2 className="text-2xl">{item.icon}</H2>
-                </View>
-                <H2 className="text-xl font-semibold capitalize text-gray-700 dark:text-white">
-                  {item.title}
-                </H2>
-                <MyText className="text-gray-500 dark:text-gray-300">
-                  {item.description}
-                </MyText>
+        <View className="mt-8 flex-row flex-wrap justify-between">
+          {features.map((item) => (
+            <View key={item.title} className="w-[48%] mb-4 space-y-3">
+              <View className="inline-block rounded-xl bg-blue-100 p-3 text-blue-500 dark:bg-blue-500 dark:text-white">
+                <H2 className="text-2xl">{item.icon}</H2>
               </View>
-            )}
-          />
+              <H2 className="text-xl font-semibold capitalize text-gray-700 dark:text-white">
+                {item.title}
+              </H2>
+              <MyText className="text-gray-500 dark:text-gray-300">
+                {item.description}
+              </MyText>
+            </View>
+          ))}
         </View>
       </View>
     </View>

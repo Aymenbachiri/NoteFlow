@@ -39,7 +39,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
-        <ThemeProvider>{children}</ThemeProvider>;
+        <ThemeProvider>{children}</ThemeProvider>
       </ClerkLoaded>
     </ClerkProvider>
   );
