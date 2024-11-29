@@ -2,7 +2,6 @@ import { ScrollView, StatusBar } from "react-native";
 import { useTheme } from "../lib/providers/ThemeProvider";
 import Body from "../components/Body";
 import Features from "../components/Features";
-import Location from "../components/Location";
 
 export default function Index() {
   const { colorScheme } = useTheme();
@@ -16,7 +15,6 @@ export default function Index() {
       <ScrollView className="flex-1 dark:bg-black bg-white">
         <Body />
         <Features />
-        <Location />
       </ScrollView>
     </>
   );
